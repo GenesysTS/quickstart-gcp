@@ -15,3 +15,9 @@ variable consul_helm_version {
   type = string
   default = "0.41.0"
 }
+
+# MSSQL
+variable mssql_helm_version {
+  type = string
+  default = "1.0.11"
+}

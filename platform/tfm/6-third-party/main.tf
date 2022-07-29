@@ -71,3 +71,34 @@ resource "helm_release" "consul" {
     kubernetes_namespace.consul,
   ]
 }
+
+# MSSQL namespace creation
+resource "kubernetes_namespace" "infra" {
+  metadata {
+    name = "infra"
+  }
+}
+
+# Helm Value for MSSQL
+data "local_file" "helmvalues-mssql" {
+  filename = "${path.module}/mssql-values.yaml"
+}
+
+resource "helm_release" "mssql" {
+  name          = "mssql"
+  repository    = "https://simcubeltd.github.io/simcube-helm-charts"
+  chart         = "consul"
+  namespace     = "infra"
+  timeout       = 1000
+  atomic        = true
+  max_history   = 10
+  wait          = true
+  recreate_pods = true
+  version       =  var.mssql_helm_version
+  values        = [
+    data.local_file.helmvalues-mssql.content
+  ]
+  depends_on = [
+    kubernetes_namespace.infra,
+  ]
+}
