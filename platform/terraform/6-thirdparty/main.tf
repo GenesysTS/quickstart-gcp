@@ -1,3 +1,4 @@
+# mod DM
 module "gke_auth" {
   source = "terraform-google-modules/kubernetes-engine/google//modules/auth"
   project_id    = "INSERT_VGCPPROJECT"
@@ -12,9 +13,6 @@ resource "local_file" "kubeconfig" {
 
 module "third-party" {
     source  = "../../../tfm/6-third-party/"
-    consul_helm_version = "0.41.0"
-    consul_image        = "hashicorp/consul:1.11.3"
-    consul_imageK8S     = "hashicorp/consul-k8s-control-plane:0.41.0"
 }
 
 data "google_client_config" "provider" {}
@@ -58,7 +56,8 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "3.52.0"
+      # version = "3.52.0"
+      version = "4.29.0"
     }
   }
 

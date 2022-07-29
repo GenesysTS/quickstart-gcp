@@ -34,15 +34,15 @@ variable manageSystemACLs {
 
 variable consul_helm_version {
   type = string
-  default = "v0.34.1"
+  default = "0.41.0"
 }
 
 variable consul_image {
   type = string
-  default = "hashicorp/consul:1.9.15"
+  default = "hashicorp/consul:1.11.3"
 }
 
 variable consul_imageK8S {
   type = string
-  default = "hashicorp/consul-k8s-control-plane:0.34.1"
+  default = "hashicorp/consul-k8s-control-plane:0.41.0"
 } 
