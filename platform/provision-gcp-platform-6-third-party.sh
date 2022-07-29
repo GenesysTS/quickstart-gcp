@@ -27,7 +27,7 @@ sed -i "s#INSERT_VSTORAGEBUCKET#$VSTORAGEBUCKET#g" "./platform/terraform/cloudbu
 cat "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 
 # only for 6-thirdparty - adjust if moving to root
-dir=platform/terraform/cloudbuild/6-thirdparty/*
+dir=platform/terraform/cloudbuild/6-thirdparty/
 
 echo "***********************"
 echo "Initializing Terraform to provision GCP Platform"
@@ -47,7 +47,7 @@ echo "***********************"
 echo "Executing Terraform to provision GCP Platform"
 echo "***********************"
 
-    cd ${dir}   
+    cd ${dir}
     env=${dir%*/}
     env=${env#*/}  
     echo ""
@@ -56,4 +56,3 @@ echo "***********************"
     echo "*************************************************"
     terraform apply -auto-approve || exit 1
     cd ../../../../
-
