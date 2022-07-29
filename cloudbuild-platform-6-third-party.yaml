@@ -1,0 +1,15 @@
+steps:
+- id: 'Provision GCP Platform Third Party services with Terraform'
+  name: 'us-west2-docker.pkg.dev/gts-multicloud-pe-dmitry/cloudbuild/privateedition'
+  entrypoint: 'bash'
+  args: ['platform/provision-gcp-platform-6-third-party.sh']
+  env:
+    - 'VDOMAIN=${_VDOMAIN}'
+    - 'VGCPPROJECT=${_VGCPPROJECT}'
+    - 'VGCPREGIONPRIMARY=${_VGCPREGIONPRIMARY}'
+    - 'VGCPREGIONSECONDARY=${_VGCPREGIONSECONDARY}'
+    - 'VGKECLUSTER=${_VGKECLUSTER}'
+    - 'VEMAILADDRESS=${_VEMAILADDRESS}'
+    - 'VSTORAGEBUCKET=${_VSTORAGEBUCKET}'
+  timeout: '7200s'
+timeout: '7200s'
