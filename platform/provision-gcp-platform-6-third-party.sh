@@ -26,11 +26,13 @@ sed -i "s#INSERT_VGKECLUSTER#$VGKECLUSTER#g" "./platform/terraform/cloudbuild/6-
 sed -i "s#INSERT_VSTORAGEBUCKET#$VSTORAGEBUCKET#g" "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 cat "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 
+# only for 6-thirdparty - adjust if moving to root
+dir=platform/terraform/cloudbuild/6-thirdparty/*
+
 echo "***********************"
 echo "Initializing Terraform to provision GCP Platform"
 echo "***********************"
-for dir in platform/terraform/cloudbuild/6-thirdparty/*
-do 
+
     cd ${dir}   
     env=${dir%*/}
     env=${env#*/}  
@@ -40,13 +42,11 @@ do
     echo "*************************************************"
     terraform init || exit 1
     cd ../../../../
-done
 
 echo "***********************"
 echo "Executing Terraform to provision GCP Platform"
 echo "***********************"
-for dir in platform/terraform/cloudbuild/*
-do 
+
     cd ${dir}   
     env=${dir%*/}
     env=${env#*/}  
@@ -56,4 +56,4 @@ do
     echo "*************************************************"
     terraform apply -auto-approve || exit 1
     cd ../../../../
-done
+
