@@ -1,48 +1,17 @@
-#variable chartValues    { default = "" }
-
-variable tls {
-  default = true
+# Kafka
+variable kafka_helm_version {
+  type = string
+  default = "0.6.1"
 }
 
-variable connectInject {
-  default = true
+# Keda
+variable keda_helm_version {
+  type = string
+  default = "2.6.2"
 }
 
-variable controller {
-  default = true
-}
-
-variable openshift {
-  default = false
-}
-
-variable syncCatalog {
-  default = true
-}
-
-variable ui {
-  default = true
-}
-
-variable client {
-  default = true
-}
-
-variable manageSystemACLs {
-  default = true
-}
-
+# Consul
 variable consul_helm_version {
   type = string
   default = "0.41.0"
 }
-
-variable consul_image {
-  type = string
-  default = "hashicorp/consul:1.11.3"
-}
-
-variable consul_imageK8S {
-  type = string
-  default = "hashicorp/consul-k8s-control-plane:0.41.0"
-} 
