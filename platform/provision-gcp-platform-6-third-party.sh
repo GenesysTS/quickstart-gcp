@@ -10,7 +10,15 @@ echo "***********************"
 #INPUT: VEMAILADDRESS
 #INPUT: VSTORAGEBUCKET
 
+echo "***********************"
+echo "Logging into GCP"
+echo "***********************"
+gcloud init --no-launch-browser
 
+echo "***********************"
+echo "Logging into GKE"
+echo "***********************"
+gcloud container clusters get-credentials $gkeCluster --region $gcpRegion --project $gcpProject
 
 echo "***********************"
 echo "Modifying 6-thirdparty"
