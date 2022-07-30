@@ -10,7 +10,7 @@ global:
   acls:
     manageSystemACLs: true
   openshift:
-    enabled: true
+    enabled: false
 
 server:
   replicas: 3
@@ -37,3 +37,4 @@ controller:
 syncCatalog:
   enabled: true
   addK8SNamespaceSuffix: false
+
