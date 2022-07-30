@@ -45,7 +45,7 @@ sed -i "s#INSERT_VGCPREGIONPRIMARY#$VGCPREGIONPRIMARY#g" "./platform/terraform/c
 sed -i "s#INSERT_VGKECLUSTER#$VGKECLUSTER#g" "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 sed -i "s#INSERT_VSTORAGEBUCKET#$VSTORAGEBUCKET#g" "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 sed -i "s#INSERT_VDOMAIN#$VDOMAIN#g" "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
-sed -i "s#INSERT_VDOMAIN#$VDOMAIN#g" "./platform/tfm/6-thirdparty/prometheus-values.yaml"
+sed -i "s#INSERT_VDOMAIN#$VDOMAIN#g" "./platform/tfm/6-third-party/prometheus-values.yaml"
 cat "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 
 # only for 6-thirdparty - adjust if moving to root
