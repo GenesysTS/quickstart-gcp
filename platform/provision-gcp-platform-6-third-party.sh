@@ -27,6 +27,9 @@ echo "Logging into GKE"
 echo "***********************"
 gcloud container clusters get-credentials $gkeCluster --region $gcpRegion --project $gcpProject
 
+#verify kubeconfig file was written
+cat ~/.kube/config
+
 echo "***********************"
 echo "Modifying 6-thirdparty"
 echo "***********************"
