@@ -28,7 +28,7 @@ echo "***********************"
 gcloud container clusters get-credentials $gkeCluster --region $gcpRegion --project $gcpProject
 
 #verify kubeconfig file was written
-cat ~/.kube/config
+#cat ~/.kube/config
 
 echo "***********************"
 echo "Modifying 6-thirdparty"
@@ -37,11 +37,13 @@ echo "***********************"
 #INPUT: VGCPREGIONPRIMARY
 #INPUT: VGKECLUSTER
 #INPUT: VSTORAGEBUCKET
+#INPUT: VDOMAIN
 
 sed -i "s#INSERT_VGCPPROJECT#$VGCPPROJECT#g" "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 sed -i "s#INSERT_VGCPREGIONPRIMARY#$VGCPREGIONPRIMARY#g" "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 sed -i "s#INSERT_VGKECLUSTER#$VGKECLUSTER#g" "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 sed -i "s#INSERT_VSTORAGEBUCKET#$VSTORAGEBUCKET#g" "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
+sed -i "s#INSERT_VDOMAIN#$VDOMAIN#g" "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 cat "./platform/terraform/cloudbuild/6-thirdparty/main.tf"
 
 # only for 6-thirdparty - adjust if moving to root

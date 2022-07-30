@@ -76,7 +76,7 @@ resource "helm_release" "keda" {
   ]
 }
 
-# MSSQL namespace creation
+# Infra namespace creation
 resource "kubernetes_namespace" "infra" {
   metadata {
     name = "infra"
@@ -101,6 +101,30 @@ resource "helm_release" "mssql" {
   version       =  var.mssql_helm_version
   values        = [
     data.local_file.helmvalues-mssql.content
+  ]
+  depends_on = [
+    kubernetes_namespace.infra,
+  ]
+}
+
+# Helm Value for Prometheus
+data "local_file" "helmvalues-prometheus" {
+  filename = "${path.module}/prometheus-values.yaml"
+}
+
+resource "helm_release" "prometheus" {
+  name          = "prometheus"
+  repository    = "https://prometheus-community.github.io/helm-charts"
+  chart         = "kube-prometheus-stack"
+  namespace     = "infra"
+  timeout       = 1000
+  atomic        = true
+  max_history   = 10
+  wait          = true
+  recreate_pods = true
+  version       =  var.prometheus_helm_version
+  values        = [
+    data.local_file.helmvalues-prometheus.content
   ]
   depends_on = [
     kubernetes_namespace.infra,

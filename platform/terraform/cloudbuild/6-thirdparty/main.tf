@@ -1,3 +1,11 @@
+module "jumphost_instance" {
+    source                = "../../../tfm/6-third-party/"
+    project               = "INSERT_VGCPPROJECT"
+    region                = "INSERT_VGCPREGIONPRIMARY"
+    cluster               = "INSERT_VGKECLUSTER"
+    domain                = "INSERT_VDOMAIN"
+}
+
 module "third-party" {
     source  = "../../../tfm/6-third-party/"
 }
@@ -16,9 +24,13 @@ terraform {
       source  = "hashicorp/google"
       version = "4.29.0"
     }
-      helm = {
+    helm = {
       source = "hashicorp/helm"
       version = "2.6.0"
+    }
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "2.12.1"
     }
   }
 
@@ -42,7 +54,7 @@ provider "kubernetes" {
 
 provider "helm" {
   kubernetes {
-    host  = "https://${data.google_container_cluster.INSERT_VGKECLUSTER.endpoint}"
+    # host  = "https://${data.google_container_cluster.INSERT_VGKECLUSTER.endpoint}"
     config_path = "~/.kube/config"
   }
 }
