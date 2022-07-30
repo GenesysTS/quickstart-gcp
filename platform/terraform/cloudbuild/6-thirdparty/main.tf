@@ -36,6 +36,10 @@ provider "google" {
   project = "INSERT_VGCPPROJECT"
 }
 
+provider "kubernetes" {
+  config_path    = "~/.kube/config"
+}
+
 provider "helm" {
   kubernetes {
     host  = "https://${data.google_container_cluster.INSERT_VGKECLUSTER.endpoint}"
