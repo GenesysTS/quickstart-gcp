@@ -16,6 +16,7 @@ echo "***********************"
 export gkeCluster=$VGKECLUSTER
 export gcpRegion=$VGCPREGIONPRIMARY
 export gcpProject=$VGCPPROJECT
+export DOMAIN=$VDOMAIN
 
 echo "***********************"
 echo "Logging into GCP"
