@@ -1,12 +1,5 @@
-module "jumphost_instance" {
-    source                = "../../../tfm/6-third-party/"
-    project_id    = "INSERT_VGCPPROJECT"
-    cluster_name  = "INSERT_VGKECLUSTER"
-    location      = "INSERT_VGCPREGIONPRIMARY"
-}
-
-provider "google" {
-  project = "INSERT_VGCPPROJECT"
+module "third-party" {
+    source  = "../../../tfm/6-third-party/"
 }
 
 terraform {
@@ -14,6 +7,10 @@ terraform {
     google = {
       source  = "hashicorp/google"
       version = "4.29.0"
+    }
+      helm = {
+      source = "hashicorp/helm"
+      version = "2.6.0"
     }
   }
 
@@ -25,4 +22,14 @@ terraform {
         bucket = "INSERT_VSTORAGEBUCKET"
         prefix = "thirdparty-INSERT_VGKECLUSTER-INSERT_VGCPREGIONPRIMARY-state"
     }
+}
+
+provider "google" {
+  project = "INSERT_VGCPPROJECT"
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
 }
