@@ -2,6 +2,14 @@ module "third-party" {
     source  = "../../../tfm/6-third-party/"
 }
 
+data "google_client_config" "provider" {}
+
+data "google_container_cluster" "INSERT_VGKECLUSTER" {
+  name     = "INSERT_VGKECLUSTER"
+  location = "INSERT_VGCPREGIONPRIMARY"
+  project  = "INSERT_VGCPPROJECT"
+}
+
 terraform {
   required_providers {
     google = {
@@ -30,6 +38,7 @@ provider "google" {
 
 provider "helm" {
   kubernetes {
+    host  = "https://${data.google_container_cluster.INSERT_VGKECLUSTER.endpoint}"
     config_path = "~/.kube/config"
   }
 }
