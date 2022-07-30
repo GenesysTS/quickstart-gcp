@@ -87,7 +87,7 @@ data "local_file" "helmvalues-mssql" {
 resource "helm_release" "mssql" {
   name          = "mssql"
   repository    = "https://simcubeltd.github.io/simcube-helm-charts"
-  chart         = "consul"
+  chart         = "mssqlserver-2019"
   namespace     = "infra"
   timeout       = 1000
   atomic        = true
