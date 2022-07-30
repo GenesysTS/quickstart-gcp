@@ -11,6 +11,13 @@ echo "***********************"
 #INPUT: VSTORAGEBUCKET
 
 echo "***********************"
+echo "Set Variables"
+echo "***********************"
+export gkeCluster=$VGKECLUSTER
+export gcpRegion=$VGCPREGIONPRIMARY
+export gcpProject=$VGCPPROJECT
+
+echo "***********************"
 echo "Logging into GCP"
 echo "***********************"
 gcloud init --no-launch-browser
