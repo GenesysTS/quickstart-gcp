@@ -16,10 +16,10 @@ alertmanager:
       annotations: 
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts: 
-        - alert-manager.${DOMAIN}
+        - alert-manager.INSERT_VDOMAIN
       tls: 
         - hosts:
-            - alert-manager.${DOMAIN}
+            - alert-manager.INSERT_VDOMAIN
           secretName: alertmgr-ingress-cert
 
 prometheus:
@@ -30,8 +30,8 @@ prometheus:
     annotations: 
       cert-manager.io/cluster-issuer: letsencrypt-prod
     hosts: 
-      - prometheus.${DOMAIN}
+      - prometheus.INSERT_VDOMAIN
     tls: 
       - hosts:
-          - prometheus.${DOMAIN}
+          - prometheus.INSERT_VDOMAIN
         secretName: prometheus-ingress-cert
