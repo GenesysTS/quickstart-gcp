@@ -1,13 +1,9 @@
-module "jumphost_instance" {
-    source                = "../../../tfm/6-third-party/"
+module "third-party" {
+    source  = "../../../tfm/6-third-party/"
     project               = "INSERT_VGCPPROJECT"
     region                = "INSERT_VGCPREGIONPRIMARY"
     cluster               = "INSERT_VGKECLUSTER"
     domain                = "INSERT_VDOMAIN"
-}
-
-module "third-party" {
-    source  = "../../../tfm/6-third-party/"
 }
 
 data "google_client_config" "provider" {}
