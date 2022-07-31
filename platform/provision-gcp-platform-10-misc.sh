@@ -56,7 +56,7 @@ echo "***********************"
 #done
 
 echo "***********************"
-echo "Executing Terraform to provision GCP Artifactory"
+echo "Executing Terraform to provision GKE misc settings"
 echo "***********************"
 #for dir in platform/terraform/cloudbuild/*
 #do 
