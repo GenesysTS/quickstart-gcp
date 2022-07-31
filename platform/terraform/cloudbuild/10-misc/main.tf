@@ -1,3 +1,7 @@
+module "third-party" {
+    source                = "../../../tfm/10-misc/"
+}
+
 terraform {
       required_providers {
         consul = {
