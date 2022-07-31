@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    mssql = {
+      source = "PGSSoft/mssql"
+      version = "0.1.1"
+    }
+  }
+}
+
 ### Create consul intentation to allow all-to-all connectivity
 resource "consul_config_entry" "service_intentions" {
       name = "*"
