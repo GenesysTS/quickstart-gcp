@@ -1,10 +1,3 @@
-module "jumphost_instance" {
-    source                = "../../../tfm/10-misc/"
-    project               = "INSERT_VGCPPROJECT"
-    consultoken           = "INSERT_CONSUL_TOKEN"
-    region                = "INSERT_VGCPREGIONPRIMARY"
-}
-
 terraform {
       required_providers {
         consul = {
