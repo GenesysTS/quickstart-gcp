@@ -21,7 +21,7 @@ resource "mssql_database" "gvp-rs" {
 }
 
 resource "mssql_sql_login" "gkeadmin" {
-  provider = pgssoft/mssql
+  provider = pgssoft.mssql
   name                      = "gkeadmin"
   password                  = "Genesys@123"
   must_change_password      = false
