@@ -30,7 +30,7 @@ data "mssql_database" "gvp-rs" {
 }
 
 resource "mssql_database" "gvp-rs" {
-  count     = data.mssql_database.gvp-rs.id == NULL ? 1 : 0
+  count     = data.mssql_database.gvp-rs.id ? 1 : 0
   name      = "gvp_rs"
 }
 
