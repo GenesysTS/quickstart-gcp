@@ -28,6 +28,10 @@ resource "mssql_database" "gvp-rs" {
   name      = "gvp_rs"
 }
 
+output "db_id" {
+  value = mssql_database.gvp-rs.id
+}
+
 resource "mssql_sql_login" "gkeadmin" {
   name                      = "gkeadmin"
   password                  = "Genesys@123"
@@ -48,7 +52,7 @@ resource "mssql_sql_login" "mssqlreader" {
 
 resource "mssql_sql_user" "gkeadmin" {
   name        = "gkeadmin"
-  database_id = data.mssql_database.gvp-rs.id
+  database_id = db_id
   login_id    = mssql_sql_login.gkeadmin.id
   depends_on = [mssql_database.gvp-rs,mssql_sql_login.gkeadmin]
 }
