@@ -79,7 +79,7 @@ resource "mssql_database_role_member" "db_owner" {
   #name        = "db_owner"
   #database_id = mssql_database.gvp-rs.id
   role_id     = mssql_database_role.db_owner.id
-  owner_id    = mssql_sql_user.gkeadmin.id
+  member_id   = mssql_sql_user.gkeadmin.id
   depends_on  = [mssql_database_role.db_owner,mssql_sql_user.gkeadmin]
 }
 
@@ -87,6 +87,6 @@ resource "mssql_database_role_member" "db_datareader" {
   #name        = "db_datareader"
   #database_id = mssql_database.gvp-rs.id
   role_id     = mssql_database_role.db_owner.id
-  owner_id    = mssql_sql_user.mssqlreader.id
+  member_id   = mssql_sql_user.mssqlreader.id
   depends_on  = [mssql_database_role.db_datareader,mssql_sql_user.gkeadmin]
 }
