@@ -61,14 +61,14 @@ resource "mssql_sql_user" "mssqlreader" {
   depends_on = [mssql_database.gvp-rs,mssql_sql_login.mssqlreader]
 }
 
-resource "mssql_datbase_role_member" "gkeadmin" {
+resource "mssql_database_role_member" "gkeadmin" {
   name        = "db_owner"
   database_id = mssql_database.gvp-rs.id
   owner_id    = mssql_sql_user.gkeadmin.id
   depends_on = [mssql_sql_user.gkeadmin]
 }
 
-resource "mssql_datbase_role_member" "mssqlreader" {
+resource "mssql_database_role_member" "mssqlreader" {
   name        = "db_datareader"
   database_id = mssql_database.gvp-rs.id
   owner_id    = mssql_sql_user.mssqlreader.id
