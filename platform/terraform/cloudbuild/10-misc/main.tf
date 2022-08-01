@@ -28,7 +28,8 @@ provider "google" {
 provider "consul" {
   address    = "localhost:8500"
   datacenter = "dc1"
-  token      = "INSERT_CONSUL_TOKEN"
+  token      = var.consulsecret
+  #token      = "INSERT_CONSUL_TOKEN"
 }
 
 provider "mssql" {
@@ -37,6 +38,7 @@ provider "mssql" {
 
   sql_auth = {
     username = "sa"
-    password = "INSERT_MSSQLSAPASSWORD"
+    password = var.mssqlsapassword
+    #password = "INSERT_MSSQLSAPASSWORD"
   }
 }
