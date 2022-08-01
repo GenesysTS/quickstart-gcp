@@ -77,7 +77,7 @@ data "mssql_database_role" "db_datareader" {
 resource "mssql_database_role_member" "db_owner" {
   role_id     = data.mssql_database_role.db_owner.id
   member_id   = mssql_sql_user.dbo.id
-  depends_on  = [mssql_database.gvp_rs,mssql_sql_user.admin]
+  depends_on  = [mssql_database.gvp_rs,mssql_sql_user.dbo]
 }
 
 resource "mssql_database_role_member" "db_datareader" {
