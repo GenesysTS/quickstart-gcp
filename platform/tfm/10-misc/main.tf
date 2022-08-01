@@ -28,7 +28,7 @@ resource "consul_config_entry" "service_intentions" {
 data "mssql_databases" "gvp-rs" {}
 
 resource "mssql_database" "gvp-rs" {
-  count     = data.mssql_database.gvp-rs.id != "gvp-rs" ? 1 : 0
+  count     = contains([data.mssql_databases.gvp-rs], "gvp-rs") ? 1 : 0
   name      = "gvp_rs"
 }
 
