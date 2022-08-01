@@ -25,12 +25,10 @@ resource "consul_config_entry" "service_intentions" {
     }
 
 ### Create MSSQL gvp-rs DB and users/logins
-data "mssql_database" "gvp-rs" {
-  name = "gvp_rs"
-}
+data "mssql_databases" "gvp-rs" {}
 
 resource "mssql_database" "gvp-rs" {
-  count     = data.mssql_database.gvp-rs.id == "no rows in result set" ? 1 : 0
+  count     = data.mssql_database.gvp-rs.id != "gvp-rs" ? 1 : 0
   name      = "gvp_rs"
 }
 
