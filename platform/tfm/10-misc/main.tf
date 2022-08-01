@@ -26,7 +26,7 @@ resource "consul_config_entry" "service_intentions" {
 
 ### Create MSSQL gvp-rs DB and users/logins
 data "mssql_database" "gvp-rs" {
-  name = "gvp-rs"
+  name = "gvp_rs"
 }
 
 resource "mssql_database" "gvp-rs" {
