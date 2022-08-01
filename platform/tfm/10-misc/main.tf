@@ -50,14 +50,14 @@ resource "mssql_sql_user" "gkeadmin" {
   name        = "gkeadmin"
   database_id = data.mssql_database.gvp-rs.id
   login_id    = mssql_sql_login.gkeadmin.id
-  depends_on = [mssql_sql_login.gkeadmin]
+  depends_on = [mssql_database.gvp-rs,mssql_sql_login.gkeadmin]
 }
 
 resource "mssql_sql_user" "mssqlreader" {
   name        = "mssqlreader"
   database_id = data.mssql_database.gvp-rs.id
   login_id    = mssql_sql_login.mssqlreader.id
-  depends_on = [mssql_sql_login.mssqlreader]
+  depends_on = [mssql_database.gvp-rs,mssql_sql_login.mssqlreader]
 }
 
 resource "mssql_database_role" "gkeadmin" {
