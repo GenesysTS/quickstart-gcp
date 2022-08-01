@@ -28,10 +28,6 @@ resource "mssql_database" "gvp-rs" {
   name      = "gvp_rs"
 }
 
-output "db_id" {
-  value = mssql_database.gvp-rs.id
-}
-
 resource "mssql_sql_login" "gkeadmin" {
   name                      = "gkeadmin"
   password                  = "Genesys@123"

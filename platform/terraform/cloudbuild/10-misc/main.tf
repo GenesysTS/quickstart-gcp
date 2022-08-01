@@ -3,6 +3,8 @@ module "jumphost_instance" {
     project               = "INSERT_VGCPPROJECT"
     consultoken           = "INSERT_CONSUL_TOKEN"
     region                = "INSERT_VGCPREGIONPRIMARY"
+    db_id                 =  data.mssql_database.gvp-rs.id
+
 }
 
 terraform {
