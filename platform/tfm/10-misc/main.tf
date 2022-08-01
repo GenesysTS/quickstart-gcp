@@ -25,7 +25,12 @@ resource "consul_config_entry" "service_intentions" {
     }
 
 ### Create MSSQL gvp-rs DB and users/logins
+data "mssql_database" "gvp-rs" {
+  name = "gvp-rs"
+}
+
 resource "mssql_database" "gvp-rs" {
+  count = data.mssql_database.gvp-rs ? 1 : 0
   name      = "gvp_rs"
 }
 
@@ -71,21 +76,16 @@ data "mssql_database_role" "db_owner" {
 data "mssql_database_role" "db_datareader" {
   name        = "db_datareader"
   database_id = mssql_database.gvp-rs.id
-  #owner_id    = data.mssql_sql_user.owner.id
   depends_on = [mssql_database.gvp-rs]
 }
 
 resource "mssql_database_role_member" "db_owner" {
-  #name        = "db_owner"
-  #database_id = mssql_database.gvp-rs.id
   role_id     = data.mssql_database_role.db_owner.id
   member_id   = mssql_sql_user.gkeadmin.id
   depends_on  = [mssql_sql_user.gkeadmin]
 }
 
 resource "mssql_database_role_member" "db_datareader" {
-  #name        = "db_datareader"
-  #database_id = mssql_database.gvp-rs.id
   role_id     = data.mssql_database_role.db_datareader.id
   member_id   = mssql_sql_user.mssqlreader.id
   depends_on  = [mssql_sql_user.gkeadmin]
