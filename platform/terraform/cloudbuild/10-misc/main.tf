@@ -28,7 +28,6 @@ provider "consul" {
   address    = "localhost:8500"
   datacenter = "dc1"
   token      = var.consulsecret
-  #token      = "INSERT_CONSUL_TOKEN"
 }
 
 provider "mssql" {
@@ -38,6 +37,5 @@ provider "mssql" {
   sql_auth = {
     username = "sa"
     password = var.mssqlsapassword
-    #password = "INSERT_MSSQLSAPASSWORD"
   }
 }
