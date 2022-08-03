@@ -48,7 +48,7 @@ resource "null_resource" "chart-pull-push" {
   depends_on = [null_resource.remotechartregistrylogin]
 }
 
-resource "null_resource" "image-pull-tag-push-prune" {
+/* resource "null_resource" "image-pull-tag-push-prune" {
   # Pull containers
   for_each = var.images
   provisioner "local-exec" {
@@ -60,4 +60,31 @@ resource "null_resource" "image-pull-tag-push-prune" {
     EOT
   }
   depends_on = [null_resource.remoteimageregistrylogin]
+} */
+
+resource "null_resource" "image-pull" {
+  # Pull containers
+  for_each = var.images
+  provisioner "local-exec" {
+    command = "podman pull ${var.remoteregistry}/${each.key}:${each.value}"
+  }
+  depends_on = [null_resource.remoteimageregistrylogin]
+}
+
+resource "null_resource" "image-tag" {
+  # Tag containers
+  for_each = var.images
+  provisioner "local-exec" {
+    command = "podman tag ${var.remoteregistry}/${each.key}:${each.value} ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}-images/${each.key}:${each.value}"
+  }
+  depends_on = [null_resource.image-pull]
+}
+
+resource "null_resource" "image-push" {
+  # Push containers
+  for_each = var.images
+  provisioner "local-exec" {
+    command = "podman push ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}-images/${each.key}:${each.value}"
+  }
+  depends_on = [null_resource.image-tag]
 }
