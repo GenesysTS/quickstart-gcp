@@ -10,9 +10,9 @@ echo "***********************"
 #INPUT: REMOTEREPOPWD"
 
 #Check if repo already exists - 0 is yes or 1 if no
-gcloud artifacts repositories describe ${VGCPREPOID]-images --location=$VGCPREGIONPRIMARY --project=$VGCPPROJECT
+gcloud artifacts repositories describe ${VGCPREPOID}-images --location=$VGCPREGIONPRIMARY --project=$VGCPPROJECT
 IMAGEREPOEXISTS=$?
-gcloud artifacts repositories describe ${VGCPREPOID]-charts --location=$VGCPREGIONPRIMARY --project=$VGCPPROJECT
+gcloud artifacts repositories describe ${VGCPREPOID}-charts --location=$VGCPREGIONPRIMARY --project=$VGCPPROJECT
 CHARTSREPOEXISTS=$?
 
 sed -i "s#INSERT_VGCPPROJECT#$VGCPPROJECT#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
