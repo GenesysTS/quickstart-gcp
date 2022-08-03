@@ -44,6 +44,7 @@ resource "null_resource" "chart-pull-push" {
       helm pull helm-multicloud/${each.key} --version ${each.value}
       helm push ${each.key}-${each.value}.tgz oci://${var.region}-docker.pkg.dev/${var.project}/${var.repoid}-charts
     EOT
+    on_failure = "continue"
   }
   depends_on = [null_resource.remotechartregistrylogin]
 }
@@ -67,6 +68,7 @@ resource "null_resource" "image-pull" {
   for_each = var.images
   provisioner "local-exec" {
     command = "podman pull ${var.remoteregistry}/${each.key}:${each.value}"
+    on_failure = "continue"
   }
   depends_on = [null_resource.remoteimageregistrylogin]
 }
@@ -76,6 +78,7 @@ resource "null_resource" "image-tag" {
   for_each = var.images
   provisioner "local-exec" {
     command = "podman tag ${var.remoteregistry}/${each.key}:${each.value} ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}-images/${each.key}:${each.value}"
+    on_failure = "continue"
   }
   depends_on = [null_resource.image-pull]
 }
@@ -85,6 +88,7 @@ resource "null_resource" "image-push" {
   for_each = var.images
   provisioner "local-exec" {
     command = "podman push ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}-images/${each.key}:${each.value}"
+    on_failure = "continue"
   }
   depends_on = [null_resource.image-tag]
 }
