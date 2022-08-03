@@ -38,7 +38,7 @@ resource "null_resource" "chart-push" {
 }
 
 
-resource "null_resource" "image-pull" {
+/* resource "null_resource" "image-pull" {
   # Pull containers
   for_each = var.images
   provisioner "local-exec" {
@@ -63,4 +63,18 @@ resource "null_resource" "image-push" {
     command = "podman push ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}/${each.key}:${each.value}"
   }
   depends_on = [null_resource.image-tag]
+} */
+
+resource "null_resource" "image-pull-tag-push-prune" {
+  # Pull containers
+  for_each = var.images
+  provisioner "local-exec" {
+    command = <<-EOT
+      podman pull ${var.remoteregistry}/${each.key}:${each.value}
+      podman tag ${var.remoteregistry}/${each.key}:${each.value} ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}/${each.key}:${each.value}
+      podman push ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}/${each.key}:${each.value}
+      podman image prune -af
+    EOT
+  }
+  depends_on = [null_resource.remoteregistrylogin]
 }
