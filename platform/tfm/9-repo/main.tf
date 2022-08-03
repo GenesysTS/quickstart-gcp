@@ -32,7 +32,7 @@ resource "null_resource" "chart-push" {
   # Push charts
   for_each = var.charts
   provisioner "local-exec" {
-    command = "helm push ${each.key}-${each.value}.tgz oci://${var.region}-docker.pkg.dev/charts/${var.project}/${var.repoid}"
+    command = "helm push ${each.key}-${each.value}.tgz oci://${var.region}-docker.pkg.dev/${var.project}/1-charts/${var.repoid}"
   }
   depends_on = [null_resource.chart-pull]
 }
