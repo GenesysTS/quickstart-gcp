@@ -2,8 +2,8 @@ resource "google_artifact_registry_repository" "images" {
   count = var.repoexists ? 1 : 0
   location      = var.region
   project       = var.project
-  repository_id = var.repoid-images
-  description   = "Genesys container and helm chart repository"
+  repository_id = "${var.repoid}-images"
+  description   = "Genesys container repository"
   format        = "DOCKER"
 }
 
@@ -11,8 +11,8 @@ resource "google_artifact_registry_repository" "charts" {
   count = var.repoexists ? 1 : 0
   location      = var.region
   project       = var.project
-  repository_id = var.repoid-charts
-  description   = "Genesys container and helm chart repository"
+  repository_id = "${var.repoid}-charts"
+  description   = "Genesys helm chart repository"
   format        = "DOCKER"
 }
 
