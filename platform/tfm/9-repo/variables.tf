@@ -60,7 +60,6 @@ variable "images" {
         "deploy_ucsx" = "100.0.097.0009"
         "designer/das" = "100.0.001.0043"
         "designer/designer" = "100.0.202.0011"
-        "fluent/fluent-bit" = "1.8.5"
         "gcxi/gcxi" = "100.0.028.0000"
         "gcxi/raa" = "100.0.011.0100"
         "genesys/ges" = "100.0.002.2105"

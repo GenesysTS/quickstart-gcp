@@ -10,13 +10,16 @@ echo "***********************"
 #INPUT: REMOTEREPOPWD"
 
 #Check if repo already exists - 0 is yes or 1 if no
-gcloud artifacts repositories describe $VGCPREPOID --location=$VGCPREGIONPRIMARY --project=$VGCPPROJECT
-REPOEXISTS=$?
+gcloud artifacts repositories describe ${VGCPREPOID]-images --location=$VGCPREGIONPRIMARY --project=$VGCPPROJECT
+IMAGEREPOEXISTS=$?
+gcloud artifacts repositories describe ${VGCPREPOID]-charts --location=$VGCPREGIONPRIMARY --project=$VGCPPROJECT
+CHARTSREPOEXISTS=$?
 
 sed -i "s#INSERT_VGCPPROJECT#$VGCPPROJECT#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
 sed -i "s#INSERT_VGCPREGIONPRIMARY#$VGCPREGIONPRIMARY#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
 sed -i "s#INSERT_VGCPREPOID#$VGCPREPOID#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
-sed -i "s#INSERT_REPOEXISTS#$REPOEXISTS#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
+sed -i "s#INSERT_IMAGEREPOEXISTS#$IMAGEREPOEXISTS#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
+sed -i "s#INSERT_CHARTSREPOEXISTS#$CHARTSREPOEXISTS#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
 sed -i "s#INSERT_REMOTEREPO#$REMOTEREPO#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
 sed -i "s#INSERT_REMOTEHELM#$REMOTEHELM#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
 sed -i "s#INSERT_REMOTEUSER#$REMOTEUSER#g" "./platform/terraform/cloudbuild/9-repo/main.tf"
@@ -53,6 +56,6 @@ echo "***********************"
     echo "*************** TERRAFOM PLAN ******************"
     echo "******* At environment: ${env} ********"
     echo "*************************************************"
-    terraform apply -auto-approve -parallelism=1 || exit 1
+    terraform apply -auto-approve -parallelism=4 || exit 1
     cd ../../../../
 #done

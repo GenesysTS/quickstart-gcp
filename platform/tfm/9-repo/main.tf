@@ -1,5 +1,5 @@
 resource "google_artifact_registry_repository" "images" {
-  count = var.repoexists ? 1 : 0
+  count         = var.imagerepoexists ? 1 : 0
   location      = var.region
   project       = var.project
   repository_id = "${var.repoid}-images"
@@ -8,7 +8,7 @@ resource "google_artifact_registry_repository" "images" {
 }
 
 resource "google_artifact_registry_repository" "charts" {
-  count = var.repoexists ? 1 : 0
+  count         = var.chartrepoexists ? 1 : 0
   location      = var.region
   project       = var.project
   repository_id = "${var.repoid}-charts"
