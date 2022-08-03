@@ -47,7 +47,7 @@ variable "images" {
     default = {
         "auth/gws-core-auth" = "100.0.009.3776"
         "auth/gws-core-environment" = "100.0.009.1954"
-/*         "auth/gws-ui-auth" = "100.0.009.1359"
+        "auth/gws-ui-auth" = "100.0.009.1359"
         "cce/recording-provider" = "100.0.1001610"
         "cxcontact/cxc-amark-app" = "100.0.030.0004.9415"
         "cxcontact/cxc-amark-ui" = "100.0.030.0004.8968"
@@ -124,7 +124,7 @@ variable "images" {
         # "voice/voicemail_node" = "100.0.1000006" # n/a on edge - using 100.0.1000009
         "voice/voicemail_node" = "100.0.1000009"
         "webrtc/coturn" = "100.0.044.0000"
-        "webrtc/webrtc" = "100.0.044.0000" */
+        "webrtc/webrtc" = "100.0.044.0000"
     }
 }
 
@@ -133,7 +133,7 @@ variable "charts" {
     default = {
         "cxcontact" = "029.0005.342"
         "designer" = "100.0.122+1407"
-/*         "designer-das" = "100.0.111+0806"
+        "designer-das" = "100.0.111+0806"
         "designer" = "100.0.122+1407"
         "gauth" = "100.0.009+0153"
         "gca" = "100.0.100+2300"
@@ -179,6 +179,6 @@ variable "charts" {
         #"voice-voicemail" = "100.0.1000012" # n/a on edge - using 100.0.1000011
         "voice-voicemail" = "100.0.1000011"
         "webrtc-service" = "100.0.041+0000"
-        "wwe-nginx" = "9.0.5" */
+        "wwe-nginx" = "9.0.5"
     }
 }
