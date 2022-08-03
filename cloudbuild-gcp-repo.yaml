@@ -14,5 +14,5 @@ steps:
   timeout: '43200s'
 timeout: '43200s'
 options:
-  diskSizeGb: '300'
+  diskSizeGb: '1000'
   machineType: 'E2_HIGHCPU_8'
