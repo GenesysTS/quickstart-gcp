@@ -3,6 +3,9 @@ steps:
   name: 'us-west2-docker.pkg.dev/gts-multicloud-pe-dmitry/cloudbuild/privateedition'
   entrypoint: 'bash'
   args: ['platform/provision-gcp-repo.sh', 'container-privileged']
+  options:
+    options:
+      diskSizeGb: '300'
   env:
     - 'VGCPPROJECT=${_VGCPPROJECT}'
     - 'VGCPREGIONPRIMARY=${_VGCPREGIONPRIMARY}'
