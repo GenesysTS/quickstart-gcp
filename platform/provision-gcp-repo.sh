@@ -53,6 +53,6 @@ echo "***********************"
     echo "*************** TERRAFOM PLAN ******************"
     echo "******* At environment: ${env} ********"
     echo "*************************************************"
-    terraform apply -auto-approve -parallelism=2 || exit 1
+    terraform apply -auto-approve -parallelism=1 || exit 1
     cd ../../../../
 #done
