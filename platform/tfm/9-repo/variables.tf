@@ -13,9 +13,14 @@ variable "repoid" {
     description = "The last part of the repository name"
 }
 
-variable "repoexists" {
+variable "imagerepoexists" {
     type = bool
-    description = "Pre-run computed value if registry already exists"
+    description = "Pre-run computed value if image artifactory already exists"
+}
+
+variable "chartrepoexists" {
+    type = bool
+    description = "Pre-run computed value if chart artifactory already exists"
 }
 
 variable "remoteregistry" {
