@@ -32,7 +32,7 @@ resource "null_resource" "chart-push" {
   # Push charts
   for_each = var.charts
   provisioner "local-exec" {
-    command = "helm push ${each.key}-${each.value}.tgz oci://${var.region}-docker.pkg.dev/${var.project}/${var.repoid}"
+    command = "helm push ${each.key}-${each.value}.tgz oci://${var.region}-docker.pkg.dev/charts/${var.project}/${var.repoid}"
   }
   depends_on = [null_resource.chart-pull]
 }
@@ -72,7 +72,7 @@ resource "null_resource" "image-pull-tag-push-prune" {
     command = <<-EOT
       podman pull ${var.remoteregistry}/${each.key}:${each.value}
       podman tag ${var.remoteregistry}/${each.key}:${each.value} ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}/${each.key}:${each.value}
-      podman push ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}/${each.key}:${each.value}
+      podman push ${var.region}-docker.pkg.dev/images/${var.project}/${var.repoid}/${each.key}:${each.value}
       podman image prune -af
     EOT
   }
