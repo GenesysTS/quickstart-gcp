@@ -70,9 +70,9 @@ resource "null_resource" "image-pull-tag-push-prune" {
   for_each = var.images
   provisioner "local-exec" {
     command = <<-EOT
-      podman pull ${var.remoteregistry}/${each.key}:${each.value}
-      podman tag ${var.remoteregistry}/${each.key}:${each.value} ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}/${each.key}:${each.value}
-      podman push ${var.region}-docker.pkg.dev/images/${var.project}/${var.repoid}/${each.key}:${each.value}
+      podman pull ${var.remoteregistry}/${each.key}:${each.value} &&
+      podman tag ${var.remoteregistry}/${each.key}:${each.value} ${var.region}-docker.pkg.dev/${var.project}/${var.repoid}/${each.key}:${each.value} &&
+      podman push ${var.region}-docker.pkg.dev/images/${var.project}/${var.repoid}/${each.key}:${each.value} &&
       podman image prune -af
     EOT
   }
