@@ -44,14 +44,6 @@ RUN apt -y install helm
 # Install kubectl with the Google CLI Tools
 RUN /usr/local/gcloud/google-cloud-sdk/bin/gcloud components install kubectl
 
-# Install Docker engine latest 
-#RUN curl https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor | tee /usr/share/keyrings/docker.gpg > /dev/null
-#RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list
-#RUN apt update
-#RUN apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-#RUN systemctl enable docker.service
-#RUN systemctl enable containerd.service 
-
 # Install Podman, includes Buildah
 RUN apt -y install podman
 
