@@ -40,6 +40,7 @@ variable "remoteregistry_user" {
 
 variable "remoteregistry_pass" {
     type = string
+    sensitive   = true
     description = "Remote registry user password"
 }
 
